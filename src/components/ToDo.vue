@@ -1,10 +1,20 @@
 <template>
   <div class="to-do">
-    <h4>To Do<span>(1)</span></h4>
-    <h2>To Do Component</h2>
+    <h4 class="status-title">To Do<span>(1)</span></h4>
+    <div class="tasks-wrapper">
+      <TaskCard />
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TaskCard from "./TaskCard.vue";
+</script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.tasks-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+</style>
