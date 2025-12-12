@@ -1,11 +1,14 @@
 <template>
   <div class="header">
     <h1 class="title">Tasks</h1>
+    <SearchFilters />
     <button class="add-task-button"><span>+</span>Create Task</button>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SearchFilters from "./SearchFilters.vue";
+</script>
 
 <style scoped lang="scss">
 .header {
