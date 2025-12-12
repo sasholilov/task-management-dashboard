@@ -1,5 +1,15 @@
 <template>
-  <router-view />
+  <div class="container">
+    <router-view />
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<style lang="scss" scoped>
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+</style>
