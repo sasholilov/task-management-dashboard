@@ -1,11 +1,5 @@
 <template>
-  <div class="search-filters-container">
-    <input
-      type="text"
-      class="search-input"
-      placeholder="Search tasks by title and desc."
-    />
-    <button>Search</button>
+  <div class="filter">
     <select class="filter-select">
       <option value="">All Statuses</option>
       <option value="completed">To Do</option>

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import SearchFilters from "./SearchFilters.vue";
+import SearchFilters from "./SearchFilter.vue";
 </script>
 
 <style scoped lang="scss">
