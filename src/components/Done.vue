@@ -1,12 +1,14 @@
 <template>
-  <div class="done">
-    <h4>Done <span>(3)</span></h4>
-    <TaskCard />
+  <div class="to-do">
+    <h4 class="status-title">Done<span>(3)</span></h4>
+    <div class="tasks-wrapper">
+      <TaskCardList status="done" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import TaskCard from "./TaskCard.vue";
+import TaskCardList from "./TaskCardList.vue";
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

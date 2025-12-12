@@ -2,19 +2,13 @@
   <div class="to-do">
     <h4 class="status-title">To Do<span>(1)</span></h4>
     <div class="tasks-wrapper">
-      <TaskCard />
+      <TaskCardList status="to do" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import TaskCard from "./TaskCard.vue";
+import TaskCardList from "./TaskCardList.vue";
 </script>
 
-<style scoped lang="scss">
-.tasks-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-</style>
+<style scoped lang="scss"></style>

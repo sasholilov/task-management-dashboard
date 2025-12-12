@@ -1,12 +1,14 @@
 <template>
-  <div class="in-progress">
-    <h4>In Progress<span>(2)</span></h4>
-    <TaskCard />
+  <div class="to-do">
+    <h4 class="status-title">In Progress<span>(2)</span></h4>
+    <div class="tasks-wrapper">
+      <TaskCardList status="in progress" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import TaskCard from "./TaskCard.vue";
+import TaskCardList from "./TaskCardList.vue";
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
