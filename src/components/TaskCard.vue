@@ -1,5 +1,10 @@
 <template>
-  <div class="task-card" v-for="task in tasksToDisplay" :key="task.title">
+  <div
+    class="task-card"
+    v-for="task in tasksToDisplay"
+    :key="task.title"
+    @click="handleOnClick(task.id)"
+  >
     <p>{{ task.title }}</p>
     <p>{{ task.description }}</p>
     <p>{{ task.status }}</p>
@@ -8,14 +13,21 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+const router = useRouter();
 const props = defineProps<{
   tasksToDisplay: Array<{
     title: string;
     description: string;
     status: string;
     dueDate: string;
+    id: number;
   }>;
 }>();
+
+function handleOnClick(id: number) {
+  router.push({ name: "TaskDetails", params: { id } });
+}
 </script>
 
 <style scoped lang="scss">
