@@ -18,7 +18,6 @@ const props = defineProps<{
   id: number;
 }>();
 const task = computed<Task | undefined>(() => store.getTaskById(props.id));
-console.log("Task Details ID:", task);
 </script>
 
 <style scoped></style>

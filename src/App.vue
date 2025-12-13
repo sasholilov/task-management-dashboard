@@ -4,6 +4,16 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useTasksStore } from "./store/tasksStore.ts";
+
+const store = useTasksStore();
+
+onMounted(() => {
+  store.fetchTasks();
+});
+</script>
 <style lang="scss" scoped>
 .container {
   max-width: 1400px;

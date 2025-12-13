@@ -11,6 +11,7 @@ export const useTasksStore = defineStore("tasks", {
 
   actions: {
     async fetchTasks() {
+      if (this.tasks.length) return;
       this.loading = true;
       this.error = null;
       try {
@@ -41,7 +42,7 @@ export const useTasksStore = defineStore("tasks", {
         ).length;
     },
     getTaskById: (state) => {
-      return (id: number) => state.tasks.find((task: Task) => task.id === id);
+      return (id: number) => state.tasks.find((task: Task) => task.id === +id);
     },
   },
 });
