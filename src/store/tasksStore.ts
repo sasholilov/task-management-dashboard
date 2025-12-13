@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { getTasks } from "../services/tasksApi";
+import type { Task } from "../components/types";
 
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
@@ -21,6 +22,23 @@ export const useTasksStore = defineStore("tasks", {
       } finally {
         this.loading = false;
       }
+    },
+  },
+
+  getters: {
+    getTasksByStatus: (state) => {
+      return (status: string) =>
+        state.tasks.filter(
+          (task: Task) => task.status.toLowerCase() === status.toLowerCase()
+        );
+    },
+
+    getTotalTasks: (state) => state.tasks.length,
+    getTasksCountByStatus: (state) => {
+      return (status: string) =>
+        state.tasks.filter(
+          (task: Task) => task.status.toLowerCase() === status.toLowerCase()
+        ).length;
     },
   },
 });
