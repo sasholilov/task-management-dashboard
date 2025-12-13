@@ -60,6 +60,10 @@ export const useTasksStore = defineStore("tasks", {
       this.tasks.push(task);
     },
 
+    deleteTask(id: number) {
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+    },
+
     setMode(mode: string) {
       this.mode = mode;
     },

@@ -34,6 +34,7 @@
     <div class="modal-footer">
       <button @click="save">Save</button>
       <button @click="closeModal">Cancel</button>
+      <button @click="deleteTask">Delete</button>
     </div>
   </VueFinalModal>
 </template>
@@ -80,6 +81,12 @@ function save() {
         closeModal();
     }
  
+}
+
+function deleteTask() {
+  store.deleteTask(store.selectedTask);
+  closeModal();
+  
 }
 
 watch(
