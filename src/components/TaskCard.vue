@@ -1,10 +1,13 @@
 <template>
-  <div
-    v-for="task in tasksToDisplay"
-    :key="task.id"
-    class="task-card"
-    @click="handleOnClick(task.id)"
-  >
+  <div v-for="task in tasksToDisplay" :key="task.id" class="task-card">
+    <div class="task-tools">
+      <Icon class="edit-icon" icon="mdi:edit-circle-outline"></Icon>
+      <Icon
+        class="enter-icon"
+        icon="mdi:location-enter"
+        @click="handleOnClick(task.id)"
+      ></Icon>
+    </div>
     <h4>{{ task.title }}</h4>
     <p class="task-description">
       {{ getDescription(task.description, task.id) }}
@@ -26,6 +29,7 @@
 import { useRouter } from "vue-router";
 import { formatDate } from "../utils/helpers";
 import { reactive } from "vue";
+import { Icon } from "@iconify/vue";
 const router = useRouter();
 defineProps<{
   tasksToDisplay: Array<{
@@ -57,6 +61,7 @@ function handleMoreClick(id: number) {
 
 <style scoped lang="scss">
 .task-card {
+  position: relative;
   background-color: $card-background;
   border: 1px solid $border-color;
   border-radius: $border-radius;
@@ -68,6 +73,9 @@ function handleMoreClick(id: number) {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
     cursor: pointer;
+    .task-tools {
+      opacity: 1;
+    }
   }
   .task-description {
     color: $text-color-muted;
@@ -101,6 +109,30 @@ function handleMoreClick(id: number) {
   .more {
     color: lighten($primary, 10%);
     font-size: 0.875rem;
+  }
+  .task-tools {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .edit-icon {
+    font-size: 1.75rem;
+    color: $secondary;
+    &:hover {
+      color: darken($secondary, 10%);
+    }
+  }
+
+  .enter-icon {
+    font-size: 1.75rem;
+    color: $primary;
+    &:hover {
+      color: darken($primary, 10%);
+    }
   }
 }
 .to-do + .tasks-wrapper .task-status {
