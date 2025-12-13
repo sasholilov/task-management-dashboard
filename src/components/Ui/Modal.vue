@@ -32,9 +32,8 @@
     </div>
 
     <div class="modal-footer">
-      <button @click="save">Save</button>
-      <button @click="closeModal">Cancel</button>
-      <button @click="deleteTask">Delete</button>
+      <Button variant="primary-small" @click="save">Save</button>
+      <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline" @click="deleteTask"></Icon>
     </div>
   </VueFinalModal>
 </template>
@@ -43,6 +42,8 @@
 import { ref, watch } from "vue";
 import { VueFinalModal } from "vue-final-modal";
 import { useTasksStore } from "../../store/tasksStore";
+import Button from "./Button.vue";
+import { Icon } from "@iconify/vue";
 import type { Task } from "../types";
 import type { statusType } from "../types"
 
@@ -122,6 +123,7 @@ watch(
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $text-color;
 }
 
 .modal-content {
@@ -136,6 +138,7 @@ watch(
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  color: $text-color;
 
   h2 {
     margin: 0;
@@ -164,7 +167,7 @@ watch(
 
     textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 200px;
       padding: 0.5rem;
       border: 1px solid $border-color;
       border-radius: $border-radius;
@@ -178,9 +181,19 @@ watch(
   }
   .modal-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+    
+    .delete-icon {
+      cursor: pointer;
+      color: $danger;
+      font-size: 2.25rem;
+      transition: all 0.3s ease-in-out;
+      &:hover  {
+        color: darken($danger, 10%);
+      }
+    }
   }
 }
 

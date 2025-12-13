@@ -59,17 +59,17 @@ const handleClick = (event) => {
   }
 }
 
-.btn-primary-large {
+.btn-primary-small {
+  font-size: 0.875rem;
   background-color: $primary;
-  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   border-radius: $border-radius;
   color: $text-color-inverted;
-  font-size: 1.2rem;
   text-align: center;
   transition: all 0.3s ease-in-out;
   &:hover {
     background-color: darken($primary, 5%);
-    color: $secondary;
+    color: darken($text-color-inverted, 5%);
   }
 }
 
