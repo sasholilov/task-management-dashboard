@@ -1,8 +1,8 @@
 <template>
   <div
-    class="task-card"
     v-for="task in tasksToDisplay"
     :key="task.title"
+    class="task-card"
     @click="handleOnClick(task.id)"
   >
     <p>{{ task.title }}</p>
@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 const router = useRouter();
-const props = defineProps<{
+defineProps<{
   tasksToDisplay: Array<{
     title: string;
     description: string;
