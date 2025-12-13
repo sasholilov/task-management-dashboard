@@ -1,16 +1,27 @@
 <template>
   <div class="search">
     <input
-      type="text"
+      v-model="query"
       class="search-input"
       placeholder="Search by title or desc."
+      type="text"
+      @keyup.enter="handleSearch"
     />
-    <Button variant="secondary"> Search </Button>
+    <Button variant="secondary" @click="handleSearch"> Search </Button>
   </div>
 </template>
 
 <script setup lang="ts">
 import Button from "../components/Ui/Button.vue";
+import { useTasksStore } from "../store/tasksStore";
+import { ref } from "vue";
+const store = useTasksStore();
+const query = ref("");
+
+function handleSearch() {
+  store.setSearchQuery(query.value);
+  query.value = "";
+}
 </script>
 
 <style scoped lang="scss">

@@ -1,11 +1,8 @@
 <template>
   <div class="status-component">
-    <h4
-      class="status-title"
-      :class="statusClasses"
-    >
+    <h4 class="status-title" :class="statusClasses">
       {{ props.status }}
-      <span>({{ count }})</span>
+      <span v-if="!store.searchQuery">({{ count }})</span>
     </h4>
     <div class="tasks-wrapper">
       <TaskCardList :status="props.status" />
@@ -23,7 +20,7 @@ const props = defineProps<{
 }>();
 const statusClasses = props.status.split(" ").join("-");
 const store = useTasksStore();
-const count = computed(() => store.getTasksByStatus(props.status).length);
+const count = computed(() => store.getTasksCountByStatus(props.status));
 </script>
 
 <style scoped lang="scss">

@@ -16,7 +16,7 @@ const props = defineProps<{
 }>();
 
 const filteredTasks = computed(() => {
-  return store.getTasksByStatus(props.status || "");
+  return store.getFilteredTasks(props.status || "");
 });
 </script>
 

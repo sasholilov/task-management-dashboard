@@ -7,6 +7,8 @@ export const useTasksStore = defineStore("tasks", {
     tasks: [] as Task[],
     loading: false,
     error: null as string | null,
+    searchQuery: "",
+    filter: "all",
   }),
 
   actions: {
@@ -24,23 +26,59 @@ export const useTasksStore = defineStore("tasks", {
         this.loading = false;
       }
     },
+
+    setSearchQuery(query: string) {
+      this.searchQuery = query;
+    },
+
+    setFilter(filter: string) {
+      this.filter = filter;
+    },
   },
 
   getters: {
-    getTasksByStatus: (state) => {
+    getFilteredTasks: (state) => {
+      let tasks = state.tasks;
+
+      if (state.searchQuery) {
+        const q = state.searchQuery.toLowerCase();
+        tasks = tasks.filter(
+          (task) =>
+            task.title.toLowerCase().includes(q) ||
+            task.description.toLowerCase().includes(q)
+        );
+      }
+
       return (status: string) =>
-        state.tasks.filter(
-          (task: Task) => task.status.toLowerCase() === status.toLowerCase()
+        tasks.filter(
+          (task) => task.status.toLowerCase() === status.toLowerCase()
         );
     },
 
+    getSearchedTasksCount: (state) => {
+      let tasks = state.tasks;
+
+      if (state.searchQuery) {
+        const q = state.searchQuery.toLowerCase();
+        tasks = tasks.filter(
+          (task) =>
+            task.title.toLowerCase().includes(q) ||
+            task.description.toLowerCase().includes(q)
+        );
+      }
+
+      return tasks.length;
+    },
+
     getTotalTasks: (state) => state.tasks.length,
+
     getTasksCountByStatus: (state) => {
       return (status: string) =>
         state.tasks.filter(
           (task: Task) => task.status.toLowerCase() === status.toLowerCase()
         ).length;
     },
+
     getTaskById: (state) => {
       return (id: number) => state.tasks.find((task: Task) => task.id === +id);
     },

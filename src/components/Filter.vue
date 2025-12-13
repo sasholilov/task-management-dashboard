@@ -1,17 +1,27 @@
 <template>
   <div class="filter">
-    <select class="filter-select">
-      <option value="">All Statuses</option>
-      <option value="completed">To Do</option>
-      <option value="pending">In Progress</option>
-      <option value="pending">Done</option>
+    <select class="filter-select" v-model="filter">
+      <option value="all">All Statuses</option>
+      <option value="to do">To Do</option>
+      <option value="in progress">In Progress</option>
+      <option value="done">Done</option>
     </select>
-    <Button variant="secondary">Filter</Button>
+    <Button @click="handleFilter" variant="secondary">Filter</Button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Button from "./Ui/Button.vue";
+import { useTasksStore } from "../store/tasksStore";
+const store = useTasksStore();
+
+const filter = ref("all");
+
+function handleFilter() {
+  store.setFilter(filter.value);
+  console.log("f", filter.value); // Logic to apply the filter can be added here
+}
 </script>
 
 <style scoped lang="scss">

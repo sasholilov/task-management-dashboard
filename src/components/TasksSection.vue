@@ -1,13 +1,34 @@
 <template>
-  <div class="tasks-section">
-    <StatusComponent status="to do" />
-    <StatusComponent status="in progress" />
-    <StatusComponent status="done" />
+  <div class="search-result" v-if="store.searchQuery">
+    <p>
+      Results from search query:
+      <strong
+        >"{{ store.searchQuery }}" ({{ store.getSearchedTasksCount }})</strong
+      >. <span class="reset" @click="handleReset">Reset</span> search query.
+    </p>
+  </div>
+  <div v-if="store.getSearchedTasksCount" class="tasks-section">
+    <StatusComponent v-show="shouldShowStatus('to do')" status="to do" />
+    <StatusComponent
+      v-show="shouldShowStatus('in progress')"
+      status="in progress"
+    />
+    <StatusComponent v-show="shouldShowStatus('done')" status="done" />
   </div>
 </template>
 
 <script setup lang="ts">
 import StatusComponent from "./StatusComponent.vue";
+import { useTasksStore } from "../store/tasksStore";
+const store = useTasksStore();
+
+const handleReset = () => {
+  store.setSearchQuery("");
+};
+
+const shouldShowStatus = (status: string) => {
+  return store.filter === "all" || store.filter === status;
+};
 </script>
 
 <style scoped lang="scss">
@@ -15,9 +36,15 @@ import StatusComponent from "./StatusComponent.vue";
   background-color: $background;
   border-radius: $border-radius;
   padding: 2rem;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
+}
+.reset {
+  color: $primary;
+  cursor: pointer;
+  font-weight: bold;
 }
 </style>
