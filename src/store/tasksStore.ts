@@ -4,7 +4,7 @@ import type { Task } from "../components/types";
 
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
-    tasks: [],
+    tasks: [] as Task[],
     loading: false,
     error: null as string | null,
   }),

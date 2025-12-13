@@ -12,7 +12,8 @@ import StatusComponent from "./StatusComponent.vue";
 
 <style scoped lang="scss">
 .tasks-section {
-  background-color: #f9f9f9;
+  background-color: $background;
+  border-radius: $border-radius;
   padding: 2rem;
   height: 100vh;
   display: grid;

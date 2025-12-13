@@ -1,11 +1,19 @@
 $primary: #3673ff;
 $secondary: #f5b056;
 $background: #f5f7fa;
+$card-background: #ffffff;
 $text-color: #222222;
 $text-color-inverted: #ffffff;
+$text-color-muted: #6c757d;
 $border-color: #e1e4e8;
 $success: #28a745;
 $warning: #ffc107;
 $danger: #dc3545;
+
+$status-colors: (
+  "to-do": #f5b056,
+  "in-progress": #3673ff,
+  "done": #28a745,
+);
 
 $border-radius: 6px;
