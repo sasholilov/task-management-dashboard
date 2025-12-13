@@ -40,5 +40,8 @@ export const useTasksStore = defineStore("tasks", {
           (task: Task) => task.status.toLowerCase() === status.toLowerCase()
         ).length;
     },
+    getTaskById: (state) => {
+      return (id: number) => state.tasks.find((task: Task) => task.id === id);
+    },
   },
 });

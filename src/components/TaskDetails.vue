@@ -9,11 +9,17 @@
 </template>
 
 <script setup lang="ts">
-import { mockTasks } from "../mockData.ts";
+import { computed } from "vue";
+import { useTasksStore } from "../store/tasksStore";
+import type { Task } from "./types";
+
+const store = useTasksStore();
 const props = defineProps<{
   id: number;
 }>();
-const task = mockTasks.find((t) => t.id === +props.id);
+const task = computed<Task | undefined>(() => store.getTaskById(props.id));
+console.log("Task Details ID:", props.id);
+console.log("Task Details Data:", task.value);
 </script>
 
 <style scoped></style>

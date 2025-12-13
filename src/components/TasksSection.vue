@@ -1,15 +1,13 @@
 <template>
   <div class="tasks-section">
-    <ToDo />
-    <InProgress />
-    <Done />
+    <StatusComponent status="to do" />
+    <StatusComponent status="in progress" />
+    <StatusComponent status="done" />
   </div>
 </template>
 
 <script setup lang="ts">
-import ToDo from "./ToDo.vue";
-import InProgress from "./InProgress.vue";
-import Done from "./Done.vue";
+import StatusComponent from "./StatusComponent.vue";
 </script>
 
 <style scoped lang="scss">

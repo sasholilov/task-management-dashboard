@@ -1,11 +1,11 @@
 <template>
   <div class="to-do">
     <h4 class="status-title">
-      To Do
+      {{ props.status }}
       <span>({{ count }})</span>
     </h4>
     <div class="tasks-wrapper">
-      <TaskCardList status="to do" />
+      <TaskCardList :status="props.status" />
     </div>
   </div>
 </template>
@@ -14,8 +14,12 @@
 import { computed } from "vue";
 import TaskCardList from "./TaskCardList.vue";
 import { useTasksStore } from "../store/tasksStore";
+
+const props = defineProps<{
+  status: string;
+}>();
 const store = useTasksStore();
-const count = computed(() => store.getTasksByStatus("to do").length);
+const count = computed(() => store.getTasksByStatus(props.status).length);
 </script>
 
 <style scoped lang="scss"></style>
