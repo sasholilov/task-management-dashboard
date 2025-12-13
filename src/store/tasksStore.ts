@@ -9,6 +9,8 @@ export const useTasksStore = defineStore("tasks", {
     error: null as string | null,
     searchQuery: "",
     filter: "all",
+    isModalOpen: false,
+    selectedTask: 0,
   }),
 
   actions: {
@@ -33,6 +35,14 @@ export const useTasksStore = defineStore("tasks", {
 
     setFilter(filter: string) {
       this.filter = filter;
+    },
+
+    setModalOpen(showModal: boolean) {
+      this.isModalOpen = showModal;
+    },
+
+    setSelectedTask(id: number) {
+      this.selectedTask = id;
     },
   },
 

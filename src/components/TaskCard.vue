@@ -1,7 +1,12 @@
 <template>
+  <Modal :isOpen="openModal" :action="action" />
   <div v-for="task in tasksToDisplay" :key="task.id" class="task-card">
     <div class="task-tools">
-      <Icon class="edit-icon" icon="mdi:edit-circle-outline"></Icon>
+      <Icon
+        @click="handleEdit(task.id)"
+        class="edit-icon"
+        icon="mdi:edit-circle-outline"
+      ></Icon>
       <Icon
         class="enter-icon"
         icon="mdi:location-enter"
@@ -28,9 +33,13 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { formatDate } from "../utils/helpers";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { Icon } from "@iconify/vue";
+import Modal from "./Ui/Modal.vue";
+import { useTasksStore } from "../store/tasksStore";
+const store = useTasksStore();
 const router = useRouter();
+
 defineProps<{
   tasksToDisplay: Array<{
     title: string;
@@ -42,9 +51,16 @@ defineProps<{
 }>();
 
 const expanded = reactive<Record<number, boolean>>({});
+const openModal = ref(false);
+const action = ref("edit");
 
 function handleOnClick(id: number) {
   router.push({ name: "TaskDetails", params: { id } });
+}
+
+function handleEdit(task: number) {
+  store.setModalOpen(true);
+  store.setSelectedTask(task);
 }
 
 function getDescription(description: string, id: number) {
