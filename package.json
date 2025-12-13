@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.ts"
   },
   "dependencies": {
+    "@iconify/vue": "^5.0.0",
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.24",
