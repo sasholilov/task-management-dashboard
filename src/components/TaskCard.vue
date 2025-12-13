@@ -1,5 +1,5 @@
 <template>
-  <Modal :isOpen="openModal" :action="action" />
+  <Modal />
   <div v-for="task in tasksToDisplay" :key="task.id" class="task-card">
     <div class="task-tools">
       <Icon
@@ -51,14 +51,13 @@ defineProps<{
 }>();
 
 const expanded = reactive<Record<number, boolean>>({});
-const openModal = ref(false);
-const action = ref("edit");
 
 function handleOnClick(id: number) {
   router.push({ name: "TaskDetails", params: { id } });
 }
 
 function handleEdit(task: number) {
+  store.setMode("edit");
   store.setModalOpen(true);
   store.setSelectedTask(task);
 }

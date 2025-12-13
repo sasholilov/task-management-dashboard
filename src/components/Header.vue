@@ -2,13 +2,23 @@
   <div class="header">
     <h1 class="title">Tasks</h1>
     <SearchFilters />
-    <Button><span>+</span>Create Task</Button>
+    <Button @click="handleCreateTask"><span>+</span>Create Task</Button>
   </div>
+  <Modal />
 </template>
 
 <script setup lang="ts">
 import SearchFilters from "./SearchFilter.vue";
 import Button from "./Ui/Button.vue";
+import Modal from "./Ui/Modal.vue";
+import { useTasksStore } from "../store/tasksStore";
+
+const store = useTasksStore();
+
+function handleCreateTask() {
+  store.setMode("add");
+  store.setModalOpen(true);
+}
 </script>
 
 <style scoped lang="scss">

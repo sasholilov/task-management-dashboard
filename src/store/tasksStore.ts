@@ -11,6 +11,7 @@ export const useTasksStore = defineStore("tasks", {
     filter: "all",
     isModalOpen: false,
     selectedTask: 0,
+    mode: "edit",
   }),
 
   actions: {
@@ -53,6 +54,14 @@ export const useTasksStore = defineStore("tasks", {
           ...updatedTask,
         };
       }
+    },
+
+    addTask(task: Task) {
+      this.tasks.push(task);
+    },
+
+    setMode(mode: string) {
+      this.mode = mode;
     },
   },
 

@@ -47,7 +47,7 @@ import type { statusType } from "../types"
 
 const store = useTasksStore()
 
-defineProps<{
+const props = defineProps<{
     action?: string
 }>()
 
@@ -60,16 +60,26 @@ function closeModal() {
     store.setModalOpen(false);
 }
 
+const idToUpdateorAdd = props.action === 'edit' ? store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
+
 function save() {
     const updatedTask: Task = {
         title: title.value,
         description: description.value,
         status: status.value as statusType,
         dueDate: dueDate.value,
-        id: store.selectedTask as number
+        id: idToUpdateorAdd as number
     }
-    store.updateTask(store.selectedTask, updatedTask)
-    closeModal();
+    if (store.mode === 'edit') {
+        store.updateTask(store.selectedTask, updatedTask)
+        closeModal();
+    }
+    
+    if (store.mode === 'add') {
+        store.addTask(updatedTask)
+        closeModal();
+    }
+ 
 }
 
 watch(
