@@ -6,4 +6,4 @@ export interface Task {
   id: number;
 }
 
-type statusType = "to do" | "in progress" | "done";
+export type statusType = "to do" | "in progress" | "done";

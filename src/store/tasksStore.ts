@@ -44,6 +44,16 @@ export const useTasksStore = defineStore("tasks", {
     setSelectedTask(id: number) {
       this.selectedTask = id;
     },
+
+    updateTask(id: number, updatedTask: Task) {
+      const index = this.tasks.findIndex((task) => task.id === id);
+      if (index !== -1) {
+        this.tasks[index] = {
+          ...this.tasks[index],
+          ...updatedTask,
+        };
+      }
+    },
   },
 
   getters: {

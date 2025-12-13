@@ -42,6 +42,8 @@
 import { ref, watch } from "vue";
 import { VueFinalModal } from "vue-final-modal";
 import { useTasksStore } from "../../store/tasksStore";
+import type { Task } from "../types";
+import type { statusType } from "../types"
 
 const store = useTasksStore()
 
@@ -52,15 +54,21 @@ defineProps<{
 const title = ref("");
 const description = ref("");
 const status = ref("to do");
-const dueDate = ref("");
-
-console.log('davidi', title, description, status, dueDate)
+const dueDate = ref("")
 
 function closeModal() {
     store.setModalOpen(false);
 }
 
 function save() {
+    const updatedTask: Task = {
+        title: title.value,
+        description: description.value,
+        status: status.value as statusType,
+        dueDate: dueDate.value,
+        id: store.selectedTask as number
+    }
+    store.updateTask(store.selectedTask, updatedTask)
     closeModal();
 }
 
