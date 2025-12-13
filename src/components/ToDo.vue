@@ -1,6 +1,9 @@
 <template>
   <div class="to-do">
-    <h4 class="status-title">To Do<span>(1)</span></h4>
+    <h4 class="status-title">
+      To Do
+      <span>(1)</span>
+    </h4>
     <div class="tasks-wrapper">
       <TaskCardList status="to do" />
     </div>
