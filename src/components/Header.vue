@@ -17,6 +17,7 @@ const store = useTasksStore();
 
 function handleCreateTask() {
   store.setMode("add");
+  store.setSelectedTask(0);
   store.setModalOpen(true);
 }
 </script>
