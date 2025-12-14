@@ -28,10 +28,6 @@
 
 This project uses a mock REST API hosted on npoint.io for demonstration purposes.
 
-- Mobile (< 768px)
-- Tablet (768px - 1024px)
-- Desktop (> 1024px)
-
 ## Project Setup
 
 ```sh
