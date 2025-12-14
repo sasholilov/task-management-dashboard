@@ -41,4 +41,12 @@ function handleFilter() {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .filter {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
 </style>

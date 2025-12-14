@@ -123,4 +123,18 @@ watchEffect(() => {
     margin-top: 2rem;
   }
 }
+
+@media (max-width: 1200px) {
+  .task-details {
+    width: 90%;
+    padding: 1rem;
+    top: 10%;
+    transform: translate(-50%, -10%);
+    h1 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+}
+
 </style>

@@ -39,4 +39,33 @@ function handleCreateTask() {
     vertical-align: sub;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header {
+    padding: 0;
+    .title {
+      font-size: 1.5rem;
+    }
+    :deep(.search-input) {
+      padding: 0.25rem 0.5rem;
+      max-width: 150px;
+    }
+    button {
+      padding: 3px 6px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+
+    button {
+      margin: 1.5rem 0;
+    }
+  }
+}
 </style>

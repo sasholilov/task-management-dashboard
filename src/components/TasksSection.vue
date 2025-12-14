@@ -47,4 +47,10 @@ const shouldShowStatus = (status: string) => {
   cursor: pointer;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .tasks-section {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

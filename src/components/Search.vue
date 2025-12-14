@@ -41,4 +41,12 @@ function handleSearch() {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .search {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
 </style>

@@ -15,4 +15,11 @@ import Filter from "./Filter.vue";
   display: flex;
   gap: 3rem;
 }
+
+@media (max-width: 768px) {
+  .search-filter-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 </style>
