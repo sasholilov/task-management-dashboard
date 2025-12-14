@@ -8,7 +8,7 @@
     content-class="modal-content"
   >
     <div class="modal-header">
-      <h2>Edit Task</h2>
+      <h2>{{modalTitle}}</h2>
       <button @click="closeModal">✕</button>
     </div>
 
@@ -16,12 +16,12 @@
       <input 
         v-model="title"
         type="text"
-        placeholder="Title"
+        placeholder="Title*"
         class="input-title"
       >
       <textarea
         v-model="description"
-        placeholder="Description"
+        placeholder="Description (optional)"
       />
       <select v-model="status">
         <option value="to do">To Do</option>
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { VueFinalModal } from "vue-final-modal";
 import { useTasksStore } from "../../store/tasksStore";
 import Button from "./Button.vue";
@@ -62,6 +62,10 @@ const description = ref("");
 const status = ref("to do");
 const dueDate = ref("")
 const validateMessage = ref("");
+
+const modalTitle = computed(() => {
+    return store.mode === 'add' ? 'Add New Task' : 'Edit Task';
+});
 
 const validateForm = () => {
     if (!validateTitle(title.value)) {
