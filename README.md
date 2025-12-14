@@ -1,5 +1,49 @@
-# Vue 3 + TypeScript + Vite
+# Task Management Dashboard
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Features
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- Create, edit, delete tasks
+- Filter by status (To Do, In Progress, Done)
+- Search tasks by title/description
+- Responsive design (mobile, tablet, desktop)
+- Modal-based task editing, creating adn deleting
+- Detailed task view with breadcrumbs
+
+## Tech
+
+- Vue 3 + Typescript
+- Pinia
+- Vite
+- Vitest
+- HTML
+- SCSS
+
+## Responsive
+
+- Mobile (< 768px)
+- Tablet (768px - 1024px)
+- Desktop (> 1024px)
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Tests
+
+```sh
+npm run test
+```
