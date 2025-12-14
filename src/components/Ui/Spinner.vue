@@ -26,4 +26,14 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .spinner {
+    width: 60px;
+    height: 60px;
+    top: 30%;
+    left: 42%;
+    transform: translate(-42%, -30%);
+  }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
+  <Spinner v-if="store.loading" />
   <div class="container">
-    <Spinner v-if="store.loading" />
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" />
