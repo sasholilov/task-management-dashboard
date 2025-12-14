@@ -33,9 +33,9 @@
 
     <div class="modal-footer">
       <Button variant="primary-small" @click="save">Save</button>
-      <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline" @click="deleteTask"></Icon>
+      <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline"   @click="deleteTask"></Icon>
     </div>
-    <p class="validate-message" v-if="validateMessage">{{ validateMessage }}</p>
+    <p v-if="validateMessage" class="validate-message">{{ validateMessage }}</p>
   </VueFinalModal>
 </template>
 
@@ -49,8 +49,7 @@ import type { Task } from "../types";
 import type { statusType } from "../types"
 import { useRoute, useRouter } from "vue-router";
 import { 
-    validateTitle, 
-    validateDescription, 
+    validateTitle,
     validateDueDate, 
     validateStatus 
 } from "../../utils/helpers";
@@ -67,10 +66,6 @@ const validateMessage = ref("");
 const validateForm = () => {
     if (!validateTitle(title.value)) {
         validateMessage.value = "Title must be at least 1 character long.";
-        return false;
-    }
-    if (!validateDescription(description.value)) {
-        validateMessage.value = "Description must be at least 4 characters long.";
         return false;
     }
     if (!validateDueDate(dueDate.value)) {

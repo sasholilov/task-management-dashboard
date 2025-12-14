@@ -10,10 +10,6 @@ export const validateTitle = (title: string) => {
   return title.trim().length > 0;
 };
 
-export const validateDescription = (description: string) => {
-  return description.trim().length > 3;
-};
-
 export const validateDueDate = (dueDate: string) => {
   return dueDate.trim().length > 0;
 };
