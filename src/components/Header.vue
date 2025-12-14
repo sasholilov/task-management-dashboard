@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" aria-label="Main header">
     <h1 class="title">Tasks</h1>
     <SearchFilters />
     <Button @click="handleCreateTask"><span>+</span>Create Task</Button>

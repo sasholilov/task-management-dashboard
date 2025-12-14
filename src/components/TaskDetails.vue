@@ -1,22 +1,22 @@
 <template>
   <Modal />
-  <div class="task-details">
+  <div class="task-details" role="article" :aria-label="`Details for task: ${taskTitle}`">
     <Breadcrumbs />
     <h1>{{ taskTitle }}</h1>
     <div class="task-labels">
-      <p :class="statusClass">{{ task?.status }}</p>
+      <p :class="statusClass" :aria-label="`Status: ${task?.status}`">{{ task?.status }}</p>
       <p class="due-date">
         <Icon class="icon-date" icon="mdi:date-range"></Icon
         ><span>Due Date:</span>{{ formatDate(task?.dueDate || "") }}
       </p>
     </div>
     <p class="description">
-      <p class="description-title">Description</p>
+      <p class="description-title" aria-label="Task description">Description</p>
       <p>{{ task?.description }}</p>
     </p>
     <div class="task-details-footer">
-      <Button variant="primary-small" @click="$router.back()">Go Back</Button>
-      <Button variant="secondary" @click="handleEdit">Edit Task</Button>
+      <Button variant="primary-small" aria-label="Go back to task list" @click="$router.back()">Go Back</Button>
+      <Button variant="secondary" :aria-label="`Edit task: ${taskTitle}`" @click="handleEdit">Edit Task</Button>
     </div>
   </div>
 </template>

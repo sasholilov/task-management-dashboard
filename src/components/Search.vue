@@ -4,6 +4,7 @@
       v-model="query"
       class="search-input"
       placeholder="Search by title or desc."
+      aria-label="Search tasks by title or description"
       type="text"
       @keyup.enter="handleSearch"
     />

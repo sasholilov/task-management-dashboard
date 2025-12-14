@@ -1,6 +1,11 @@
 <template>
   <Modal />
-  <div class="empty-state">
+  <div
+    class="empty-state"
+    role="status"
+    aria-live="polite"
+    aria-label="No tasks available"
+  >
     <h2 class="empty-state-message">
       There are no tasks available. Create your first task!
     </h2>

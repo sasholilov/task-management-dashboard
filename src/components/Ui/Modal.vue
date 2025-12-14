@@ -6,6 +6,10 @@
     :click-to-close="true"
     class="task-modal"
     content-class="modal-content"
+    aria-modal="true"
+    role="dialog"
+    :aria-labelledby="modalTitle"
+    :aria-describedby="store.mode === 'add' ? 'Add a new task form' : 'Edit task form'"
   >
     <div class="modal-header">
       <h2>{{modalTitle}}</h2>
@@ -32,8 +36,8 @@
     </div>
 
     <div class="modal-footer">
-      <Button variant="primary-small" @click="save">Save</button>
-      <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline"   @click="deleteTask"></Icon>
+      <Button aria-label="Save changes" variant="primary-small" @click="save">Save</button>
+      <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline"   @click="deleteTask" role="button" tabindex="0" aria-label="Delete task"></Icon>
     </div>
     <p v-if="validateMessage" class="validate-message">{{ validateMessage }}</p>
   </VueFinalModal>

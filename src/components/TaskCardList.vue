@@ -1,5 +1,11 @@
 <template>
-  <div class="task-card-list">
+  <div
+    class="task-card-list"
+    role="region"
+    :aria-label="
+      props.status ? `Task list filtered by ${props.status}` : 'Task list'
+    "
+  >
     <TaskCard :tasks-to-display="filteredTasks" />
   </div>
 </template>

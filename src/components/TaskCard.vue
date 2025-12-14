@@ -6,11 +6,17 @@
         @click="handleEdit(task.id)"
         class="edit-icon"
         icon="mdi:edit-circle-outline"
+        :aria-label="`Edit task: ${task.title}`"
+        role="button"
+        tabindex="0"
       ></Icon>
       <Icon
         class="enter-icon"
         icon="mdi:location-enter"
         @click="handleOnClick(task.id)"
+        :aria-label="`View details for task: ${task.title}`"
+        role="button"
+        tabindex="0"
       ></Icon>
     </div>
     <h4>{{ task.title }}</h4>

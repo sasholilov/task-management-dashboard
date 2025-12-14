@@ -1,6 +1,10 @@
 <template>
   <div class="filter">
-    <select class="filter-select" v-model="filter">
+    <select
+      class="filter-select"
+      v-model="filter"
+      aria-label="Filter tasks by status"
+    >
       <option value="all">All Statuses</option>
       <option value="to do">To Do</option>
       <option value="in progress">In Progress</option>
