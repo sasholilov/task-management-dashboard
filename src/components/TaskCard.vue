@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { formatDate } from "../utils/helpers";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { Icon } from "@iconify/vue";
 import Modal from "./Ui/Modal.vue";
 import { useTasksStore } from "../store/tasksStore";

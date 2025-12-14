@@ -7,7 +7,7 @@
       <p :class="statusClass">{{ task?.status }}</p>
       <p class="due-date">
         <Icon class="icon-date" icon="mdi:date-range"></Icon
-        ><span>Due Date:</span>{{ formatDate(task?.dueDate) }}
+        ><span>Due Date:</span>{{ formatDate(task?.dueDate || "") }}
       </p>
     </div>
     <p class="description">
