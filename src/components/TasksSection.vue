@@ -1,5 +1,7 @@
 <template>
+  <EmptyState v-if="!store.getSearchedTasksCount && !store.searchQuery" />
   <div class="search-result" v-if="store.searchQuery">
+    <h3 v-if="!store.getSearchedTasksCount">No tasks match your search</h3>
     <p>
       Results from search query:
       <strong
@@ -20,6 +22,7 @@
 <script setup lang="ts">
 import StatusComponent from "./StatusComponent.vue";
 import { useTasksStore } from "../store/tasksStore";
+import EmptyState from "../components/EmptyState.vue";
 const store = useTasksStore();
 
 const handleReset = () => {
