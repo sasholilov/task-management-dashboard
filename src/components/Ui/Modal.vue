@@ -35,6 +35,7 @@
       <Button variant="primary-small" @click="save">Save</button>
       <Icon v-if="store.mode==='edit'" class="delete-icon" icon="mdi:delete-circle-outline" @click="deleteTask"></Icon>
     </div>
+    <p class="validate-message" v-if="validateMessage">{{ validateMessage }}</p>
   </VueFinalModal>
 </template>
 
@@ -46,25 +47,51 @@ import Button from "./Button.vue";
 import { Icon } from "@iconify/vue";
 import type { Task } from "../types";
 import type { statusType } from "../types"
+import { 
+    validateTitle, 
+    validateDescription, 
+    validateDueDate, 
+    validateStatus 
+} from "../../utils/helpers";
 
 const store = useTasksStore()
-
-const props = defineProps<{
-    action?: string
-}>()
 
 const title = ref("");
 const description = ref("");
 const status = ref("to do");
 const dueDate = ref("")
+const validateMessage = ref("");
+
+const validateForm = () => {
+    if (!validateTitle(title.value)) {
+        validateMessage.value = "Title must be at least 1 character long.";
+        return false;
+    }
+    if (!validateDescription(description.value)) {
+        validateMessage.value = "Description must be at least 4 characters long.";
+        return false;
+    }
+    if (!validateDueDate(dueDate.value)) {
+        validateMessage.value = "Due date is required.";
+        return false;
+    }
+    if (!validateStatus(status.value)) {
+        validateMessage.value = "Invalid status selected.";
+        return false;
+    }
+    validateMessage.value = "";
+    return true;
+}
 
 function closeModal() {
     store.setModalOpen(false);
 }
 
-const idToUpdateorAdd = props.action === 'edit' ? store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
+const idToUpdateorAdd = store.mode === 'edit' ? store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
 
 function save() {
+    if (!validateForm()) return;
+  
     const updatedTask: Task = {
         title: title.value,
         description: description.value,
@@ -194,6 +221,11 @@ watch(
         color: darken($danger, 10%);
       }
     }
+  }
+  .validate-message {
+    color: $danger;
+    margin-top: 0.5rem;
+    text-align: center;
   }
 }
 
