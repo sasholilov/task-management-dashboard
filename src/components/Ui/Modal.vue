@@ -47,6 +47,7 @@ import Button from "./Button.vue";
 import { Icon } from "@iconify/vue";
 import type { Task } from "../types";
 import type { statusType } from "../types"
+import { useRoute, useRouter } from "vue-router";
 import { 
     validateTitle, 
     validateDescription, 
@@ -55,7 +56,8 @@ import {
 } from "../../utils/helpers";
 
 const store = useTasksStore()
-
+const route = useRoute();
+const router = useRouter();
 const title = ref("");
 const description = ref("");
 const status = ref("to do");
@@ -87,7 +89,7 @@ function closeModal() {
     store.setModalOpen(false);
 }
 
-const idToUpdateorAdd = store.mode === 'edit' ? store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
+const idToUpdateorAdd = store.mode === 'edit' ? route.params.id ? Number(route.params.id) : store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
 
 function save() {
     if (!validateForm()) return;
@@ -100,21 +102,28 @@ function save() {
         id: idToUpdateorAdd as number
     }
     if (store.mode === 'edit') {
-        store.updateTask(store.selectedTask, updatedTask)
+        if (route.params.id) {
+            store.updateTask(Number(route.params.id), updatedTask);
+        }
+        else store.updateTask(store.selectedTask, updatedTask);
         closeModal();
     }
     
     if (store.mode === 'add') {
         store.addTask(updatedTask)
         closeModal();
-    }
- 
+    } 
 }
 
 function deleteTask() {
+  if (route.params.id) {
+    store.deleteTask(Number(route.params.id));
+    router.push('/');
+    closeModal();
+    return;
+  }
   store.deleteTask(store.selectedTask);
   closeModal();
-  
 }
 
 watch(
