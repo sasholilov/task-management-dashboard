@@ -89,7 +89,22 @@ function closeModal() {
     store.setModalOpen(false);
 }
 
-const idToUpdateorAdd = store.mode === 'edit' ? route.params.id ? Number(route.params.id) : store.selectedTask : Date.now() + Math.floor(Math.random() * 10000)
+const getNextId = () => {
+    return 100 + store.tasks.length + 1;
+}
+
+const taskId =()=> {
+    if (store.mode === 'edit') {
+        if (route.params.id) {
+            return Number(route.params.id);
+        }
+        return store.selectedTask;
+    }
+    if (store.mode === 'add') {
+        return getNextId();
+    }
+    return null;
+}
 
 function save() {
     if (!validateForm()) return;
@@ -99,7 +114,7 @@ function save() {
         description: description.value,
         status: status.value as statusType,
         dueDate: dueDate.value,
-        id: idToUpdateorAdd as number
+        id: taskId() as number
     }
     if (store.mode === 'edit') {
         if (route.params.id) {
