@@ -93,7 +93,7 @@ const getNextId = () => {
     return 100 + store.tasks.length + 1;
 }
 
-const taskId =()=> {
+const taskId = () => {
     if (store.mode === 'edit') {
         if (route.params.id) {
             return Number(route.params.id);

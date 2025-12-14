@@ -1,6 +1,7 @@
 <template>
   <Modal />
   <div class="task-details">
+    <Breadcrumbs />
     <h1>{{ taskTitle }}</h1>
     <div class="task-labels">
       <p :class="statusClass">{{ task?.status }}</p>
@@ -28,6 +29,7 @@ import type { Task } from "./types";
 import { formatDate } from "../utils/helpers";
 import Button from "./Ui/Button.vue";
 import Modal from "./Ui/Modal.vue";
+import Breadcrumbs from "./Breadcrumbs.vue";
 
 const taskTitle = ref<string>("");
 
