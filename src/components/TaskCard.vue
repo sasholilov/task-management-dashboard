@@ -16,7 +16,11 @@
     <h4>{{ task.title }}</h4>
     <p class="task-description">
       {{ getDescription(task.description, task.id) }}
-      <span class="more" @click.stop.prevent="handleMoreClick(task.id)">
+      <span
+        v-if="task.description.length > DESCRIPTION_LENGTH_TO_EXPAND"
+        class="more"
+        @click.stop.prevent="handleMoreClick(task.id)"
+      >
         {{ expanded[task.id] ? "less" : "more" }}
       </span>
     </p>
@@ -37,17 +41,14 @@ import { reactive, ref } from "vue";
 import { Icon } from "@iconify/vue";
 import Modal from "./Ui/Modal.vue";
 import { useTasksStore } from "../store/tasksStore";
+import { DESCRIPTION_LENGTH_TO_EXPAND } from "../utils/constants";
+import type { Task } from "../components/types";
+
 const store = useTasksStore();
 const router = useRouter();
 
 defineProps<{
-  tasksToDisplay: Array<{
-    title: string;
-    description: string;
-    status: string;
-    dueDate: string;
-    id: number;
-  }>;
+  tasksToDisplay: Task[];
 }>();
 
 const expanded = reactive<Record<number, boolean>>({});
@@ -63,10 +64,10 @@ function handleEdit(task: number) {
 }
 
 function getDescription(description: string, id: number) {
-  if (description.length <= 50 || !!expanded[id]) {
+  if (description.length <= DESCRIPTION_LENGTH_TO_EXPAND || !!expanded[id]) {
     return description;
   }
-  return description.slice(0, 50) + "...";
+  return description.slice(0, DESCRIPTION_LENGTH_TO_EXPAND) + "...";
 }
 
 function handleMoreClick(id: number) {

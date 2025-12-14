@@ -1,0 +1,1 @@
+export const DESCRIPTION_LENGTH_TO_EXPAND = 50;
