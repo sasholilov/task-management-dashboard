@@ -1,5 +1,7 @@
 <template>
-  <EmptyState v-if="!store.getSearchedTasksCount && !store.searchQuery" />
+  <EmptyState
+    v-if="!store.getSearchedTasksCount && !store.searchQuery && !store.loading"
+  />
   <div class="search-result" v-if="store.searchQuery">
     <h3 v-if="!store.getSearchedTasksCount">No tasks match your search</h3>
     <p>

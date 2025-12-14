@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Spinner v-if="store.loading" />
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" />
@@ -11,6 +12,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useTasksStore } from "./store/tasksStore.ts";
+import Spinner from "./components/Ui/Spinner.vue";
 
 const store = useTasksStore();
 
